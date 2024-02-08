@@ -75,7 +75,7 @@ export default function DashCustomer() {
 
 
     return (
-        <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
+        <div className='table-auto overflow-x-scroll  md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
 
             <Link to={'/create-customer'}>
                 <Button
@@ -92,7 +92,7 @@ export default function DashCustomer() {
                 <>
 
 
-                    <Table hoverable className='shadow-md'>
+                    <Table hoverable className='shadow-md '>
                         <Table.Head>
                             <Table.HeadCell>Date created</Table.HeadCell>
                             <Table.HeadCell>User image</Table.HeadCell>

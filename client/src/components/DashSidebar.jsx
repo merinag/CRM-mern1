@@ -44,7 +44,7 @@ export default function DashSidebar() {
     <Sidebar className='w-full md:w-56'>
       <Sidebar.Items>
         <Sidebar.ItemGroup className='flex flex-col gap-1'>
-          {currentUser && currentUser.isAdmin && (
+          {(currentUser.role == "CUSTOMER" || currentUser.isAdmin) && (
             <Link to='/dashboard?tab=dash'>
               <Sidebar.Item
                 active={tab === 'dash' || !tab}
@@ -66,7 +66,7 @@ export default function DashSidebar() {
               Profile
             </Sidebar.Item>
           </Link>
-          {(currentUser.role=="CUSTOMER" || currentUser.isAdmin) && (
+          {(currentUser.role == "CUSTOMER" || currentUser.isAdmin) && (
             <Link to='/dashboard?tab=userappointment'>
               <Sidebar.Item
                 active={tab === 'userappointment'}
@@ -121,7 +121,7 @@ export default function DashSidebar() {
               </Link>
             </>
           )}
-             {currentUser.isAdmin && (
+          {currentUser.isAdmin && (
             <>
               <Link to='/dashboard?tab=job'>
                 <Sidebar.Item

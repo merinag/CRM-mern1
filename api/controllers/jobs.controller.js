@@ -33,7 +33,8 @@ export const getJobss = async (req, res, next) => {
     const sortDirection = req.query.order === 'asc' ? 1 : -1;
     const Jobss = await Jobs.find({
       ...(req.query.userId && { userId: req.query.userId }),
-      
+      ...(req.query.category && { category: req.query.category }),
+
       ...(req.query.JobsId && { _id: req.query.JobsId }),
       ...(req.query.searchTerm && {
         $or: [
@@ -87,19 +88,19 @@ export const updateJobs = async (req, res, next) => {
     return next(errorHandler(403, 'You are not allowed to update this Jobs'));
   }
   try {
-    const updatedJobs = await Jobs.findByIdAndUpdate(
-      req.params.JobsId,
+    const updatedJob = await Jobs.findByIdAndUpdate(
+      req.params.JobId,
       {
         $set: {
           title: req.body.title,
           content: req.body.content,
           category: req.body.category,
-          image: req.body.image,
+
         },
       },
       { new: true }
     );
-    res.status(200).json(updatedJobs);
+    res.status(200).json(updatedJob);
   } catch (error) {
     next(error);
   }

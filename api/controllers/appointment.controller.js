@@ -3,7 +3,7 @@ import Appointment from "../models/appointment.model.js";
 
 export const createAppointment = async (req, res, next) => {
   try {
-    const { title, content,appointmentDate, userId } = req.body;
+    const { title, content, appointmentDate, userId } = req.body;
 
     console.log(req.body)
 
@@ -40,30 +40,30 @@ export const getUserAppointement = async (req, res, next) => {
   }
 };
 
-// export const editComment = async (req, res, next) => {
-//   try {
-//     const comment = await Comment.findById(req.params.);
-//     if (!comment) {
-//       return next(errorHandler(404, 'Comment not found'));
-//     }
-//     if (comment.userId !== req.user.id && !req.user.isAdmin) {
-//       return next(
-//         errorHandler(403, 'You are not allowed to edit this comment')
-//       );
-//     }
+export const editComment = async (req, res, next) => {
+  try {
+    const comment = await Comment.findById(req.params);
+    if (!comment) {
+      return next(errorHandler(404, 'Comment not found'));
+    }
+    if (comment.userId !== req.user.id && !req.user.isAdmin) {
+      return next(
+        errorHandler(403, 'You are not allowed to edit this comment')
+      );
+    }
 
-//     const editedComment = await Comment.findByIdAndUpdate(
-//       req.params.commentId,
-//       {
-//         content: req.body.content,
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(editedComment);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    const editedComment = await Comment.findByIdAndUpdate(
+      req.params.commentId,
+      {
+        content: req.body.content,
+      },
+      { new: true }
+    );
+    res.status(200).json(editedComment);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // export const deleteComment = async (req, res, next) => {
 //   try {

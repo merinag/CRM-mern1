@@ -1,4 +1,5 @@
 import Comment from '../models/comment.model.js';
+import { errorHandler } from '../utils/error.js';
 
 export const createComment = async (req, res, next) => {
   try {
@@ -99,9 +100,10 @@ export const deleteComment = async (req, res, next) => {
 };
 
 export const getcomments = async (req, res, next) => {
-  if (!req.user.isAdmin)
+  const { role } = req.user
+  if (!(req.user.isAdmin || req.user.role == "CUSTOMER")) {
     return next(errorHandler(403, 'You are not allowed to get all comments'));
-  try {
+  } try {
     const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 9;
     const sortDirection = req.query.sort === 'desc' ? -1 : 1;

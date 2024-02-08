@@ -84,7 +84,7 @@ export default function UpdateCustomer() {
                                 onChange={(e) =>
                                     setFormData({ ...formData, username: e.target.value })
                                 }
-                                value={formData.username || ''}
+                                value={formData.username}
                             />
                         </div>
                         <div>
@@ -96,7 +96,7 @@ export default function UpdateCustomer() {
                                 onChange={(e) =>
                                     setFormData({ ...formData, email: e.target.value })
                                 }
-                                value={formData.email || ''}
+                                value={formData.email}
                             />
                         </div>
                         <div>
@@ -108,7 +108,7 @@ export default function UpdateCustomer() {
                                 onChange={(e) =>
                                     setFormData({ ...formData, password: e.target.value })
                                 }
-                                value={formData.password || ''}
+                                value={formData.password}
                             />
                         </div>
                         <Button type='submit' gradientDuoTone='purpleToPink'>

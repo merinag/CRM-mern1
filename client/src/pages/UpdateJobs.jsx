@@ -65,7 +65,7 @@ export default function UpdateJobs() {
       }
 
       if (res.ok) {
-
+        setPublishError(null);
         navigate(`/jobs`);
       }
     } catch (error) {
