@@ -49,6 +49,7 @@ export default function App() {
         <Route path='/jobs' element={<Projects />} />
         <Route path='/post/:postSlug' element={<PostPage />} />
       </Routes>
+
       <Footer />
     </BrowserRouter>
   );

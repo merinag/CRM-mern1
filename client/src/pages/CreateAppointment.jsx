@@ -16,7 +16,11 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CreateAppointment() {
   const { currentUser } = useSelector((state) => state.user);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    title: '',
+    appointmentDate: new Date().toISOString().split('T')[0],
+    content: '',
+  });
   const [publishError, setPublishError] = useState(null);
 
   const navigate = useNavigate();
@@ -24,8 +28,8 @@ export default function CreateAppointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const userId=currentUser._id
-        formData.userId =userId
+      const userId = currentUser._id
+      formData.userId = userId
       const res = await fetch('/api/appointments/create', {
         method: 'POST',
         headers: {
@@ -42,7 +46,7 @@ export default function CreateAppointment() {
         navigate('/dashboard?tab=userappointment')
       }
 
-    
+
     } catch (error) {
       setPublishError('Something went wrong');
     }
@@ -65,17 +69,18 @@ export default function CreateAppointment() {
 
 
           <TextInput
-            type='date'
-            placeholder='appointmentDate'
+            type="date"
+            placeholder="Appointment Date"
             required
-            id='appointmentDate'
-            className='flex-1'
+            id="appointmentDate"
+            min={new Date().toISOString().split('T')[0]}
+            value={formData.appointmentDate}
             onChange={(e) =>
               setFormData({ ...formData, appointmentDate: e.target.value })
             }
           />
         </div>
-    
+
         <ReactQuill
           theme='snow'
           placeholder='Write something...'
@@ -86,7 +91,7 @@ export default function CreateAppointment() {
           }}
         />
         <Button type='submit' gradientDuoTone='purpleToPink'>
-          Appoint
+          Appointment
         </Button>
         {publishError && (
           <Alert className='mt-5' color='failure'>
